@@ -54,6 +54,7 @@ jedi==0.13.2
 Jinja2==2.10
 jinja2-time==0.2.0
 jmespath==0.9.4
+joblib==0.14.1
 jsonschema==3.2.0
 jupyter==1.0.0
 jupyter-client==5.3.4
@@ -133,6 +134,7 @@ roman==2.0.0
 RPi.GPIO==0.7.0
 RTIMULib==7.2.1
 s3transfer==0.3.3
+scikit-learn==0.22.1
 scipy==1.1.0
 scrollphat==0.0.7
 scrollphathd==1.2.1
