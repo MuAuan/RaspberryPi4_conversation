@@ -51,7 +51,6 @@ ipywidgets==7.5.1
 isort==4.3.4
 itsdangerous==0.24
 jedi==0.13.2
-Jinja2==2.10
 jinja2-time==0.2.0
 jmespath==0.9.4
 joblib==0.14.1
@@ -120,7 +119,6 @@ pyrsistent==0.15.7
 pyserial==3.4
 python-apt==1.8.4.1
 python-dateutil==2.8.1
-pyxdg==0.25
 PyYAML==5.3
 pyzmq==18.1.1
 qtconsole==4.6.0
@@ -148,7 +146,6 @@ soupsieve==1.8
 spidev==3.4
 ssh-import-id==5.7
 tensorboard==1.13.1
-tensorflow==1.13.1
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
 terminado==0.8.3
@@ -159,10 +156,8 @@ touchphat==0.0.1
 traitlets==4.3.3
 twython==3.7.0
 unicornhathd==0.0.4
-urllib3==1.24.1
 wcwidth==0.1.8
 webencodings==0.5.1
-Werkzeug==0.14.1
 widgetsnbextension==3.5.1
 wrapt==1.11.2
 zipp==2.2.0
