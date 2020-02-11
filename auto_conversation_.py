@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#>python auto_conversation.py -d C:\PROGRA~1\mecab\dic\ipadic conversation_.csv  -s stop_words.txt
+#$ python3 auto_conversation_.py -i data/conversation_n.txt  -s data/stop_words.txt
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -15,7 +15,7 @@ import csv
 import time
 
 parser = argparse.ArgumentParser(description="convert csv")
-parser.add_argument("--input", "-i",type=str, help="faq csv file")
+parser.add_argument("--input", "-i",type=str, help="faq txt file")
 parser.add_argument("--dictionary", "-d", type=str, help="mecab dictionary")
 parser.add_argument("--stop_words", "-s", type=str, help="stop words list")
 args = parser.parse_args()
@@ -73,13 +73,13 @@ def text2speak(num0):
         w.writeframes(input)
 
 def save_questions(line):
-    with open('conversation_n.csv', 'a', newline='') as f:
+    with open('conversation_n.txt', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow({line})
         
 def conversation(questions,vecs,mecab):
     line = input("> ")
-    with open('conversation_n.csv', 'a', newline='') as f: #a+ #w
+    with open('conversation_n.txt', 'a', newline='') as f: #a+ #w
         writer = csv.writer(f)
         while True:
             #writer.writerow({line})
@@ -132,7 +132,7 @@ def train_conv(mecab,input):
 
 def read_conv(mecab):
     conv_new = []
-    with open('conversation_n.csv') as f:
+    with open('conversation_n.txt') as f:
         cols = f.read().strip().split('\n')
         for i in range(len(cols)):
             conv_new.append(mecab.parse(cols[i]).strip())
