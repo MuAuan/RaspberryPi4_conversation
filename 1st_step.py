@@ -16,14 +16,9 @@ stream=p.open(format = pyaudio.paInt16,
         input = True,
         output = True) # inputとoutputを同時にTrueにする
 
-w = wave.Wave_write("./wav/ohayo005_sin.wav")
-p = (1, 2, RATE, CHUNK, 'NONE', 'not compressed')
-w.setparams(p)
-
 for i in f_list:
     wavfile = './wav/'+i+'.wav'
     print(wavfile)
     wr = wave.open(wavfile, "rb")
     input = wr.readframes(wr.getnframes())
     output = stream.write(input)
-    w.writeframes(input)
