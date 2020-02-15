@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#$ python3 auto_conversation_cycle2.py -i1 data/negativ_n.txt -i2 data/positive_n.txt  -s data/stop_words.txt
+#$ python3 auto_conversation_cycle2.py -i1 data/negativ_all_n.txt -i2 data/conversation_s.txt  -s data/stop_words.txt -d /usr/lib/arm-linux-gnueabihf/mecab/dic/mecab-ipadic-neologd
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
