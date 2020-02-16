@@ -53,9 +53,9 @@ def text2speak(num0):
     f_list=[]
     f_list=sentences
 
-    w = wave.Wave_write("./wav/ohayo_.wav")
-    p = (1, 2, RATE, CHUNK, 'NONE', 'not compressed')
-    w.setparams(p)
+    #w = wave.Wave_write("./wav/ohayo_.wav")
+    #p = (1, 2, RATE, CHUNK, 'NONE', 'not compressed')
+    #w.setparams(p)
     for i in f_list:
         i = re.sub(r"[^a-z]", "", i)
         if i== '':
@@ -70,10 +70,11 @@ def text2speak(num0):
             continue
         input = wr.readframes(wr.getnframes())
         output = stream.write(input)
-        w.writeframes(input)
+        #w.writeframes(input)
 
 def save_questions(file, line): #'conversation_n.txt'
     with open(file, 'a', newline='') as f:
+        line = re.sub(r"[^一-龥ぁ-んァ-ン()0-9:.ー、]", "", line)
         writer = csv.writer(f)
         writer.writerow({line})
 
