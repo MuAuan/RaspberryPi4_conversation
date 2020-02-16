@@ -110,6 +110,8 @@ def conversation(speaker1,speaker2,mecab):
     vecs1 = vectorizer1.fit_transform(speaker1)
     vectorizer2 = TfidfVectorizer(token_pattern="(?u)\\b\\w+\\b", stop_words=stop_words)
     vecs2 = vectorizer2.fit_transform(speaker2)
+    sl1=1
+    sl2=1
 
     while True:
         sims1 = cosine_similarity(vectorizer1.transform([mecab.parse(line)]), vecs1)
@@ -121,9 +123,11 @@ def conversation(speaker1,speaker2,mecab):
         if line=="分かりません":
             print("ひろこ>"+line)
             save_questions(file2, "ひろこ>"+line)
+            sl1=0
         else:
             print("ひろこ>({:.2f}): {}".format(sims1[0][index_1],line))
             save_questions(file2,"ひろこ>({:.2f}): {}".format(sims1[0][index_1],line))
+            sl1=1
         text2speak(line)
         time.sleep(2)
             
@@ -136,12 +140,14 @@ def conversation(speaker1,speaker2,mecab):
         if line=="分かりません":
             print("ひろみ>"+line)
             save_questions(file2, "ひろみ>"+line)
+            sl2=0
         else:
             print("ひろみ>({:.2f}): {}".format(sims2[0][index_2],line))  
             save_questions(file2, "ひろみ>({:.2f}): {}".format(sims2[0][index_2],line))
+            sl2=1
         text2speak(line)
         time.sleep(2)
-        if not line:
+        if sl1+sl2==0:
             break
 
 def train_conv(mecab,input,encoding):
@@ -168,7 +174,7 @@ if args.stop_words:
     for line in open(args.stop_words, "r", encoding="utf-8"):
         stop_words.append(line.strip())
 
-while True:
+if __name__ == '__main__':
     speaker1 = train_conv(mecab,args.input1,encoding="shift-jis")
     speaker2 = train_conv(mecab,args.input2,encoding="utf-8")
 
