@@ -102,7 +102,7 @@ def hiroko(index,speaker,line):
         else:
             return line, index_
 
-def conversation(speaker1,speaker2,mecab):
+def conversation(speaker1,speaker2,mecab,stop_words):
     line = input("> ")
     file = 'conversation_n.txt'
     file2 = 'conversation_n2.txt'
@@ -167,16 +167,15 @@ def read_conv(mecab):
             conv_new.append(mecab.parse(cols[i]).strip())
     return conv_new
 
-mecab = MeCab.Tagger("-Owakati" + ("" if not args.dictionary else " -d " + args.dictionary))
-#mecab = MeCab.Tagger("-Owakati")
-stop_words = []
-if args.stop_words:
-    for line in open(args.stop_words, "r", encoding="utf-8"):
-        stop_words.append(line.strip())
-
 if __name__ == '__main__':
+    mecab = MeCab.Tagger("-Owakati" + ("" if not args.dictionary else " -d " + args.dictionary))
+    stop_words = []
+    if args.stop_words:
+        for line in open(args.stop_words, "r", encoding="utf-8"):
+            stop_words.append(line.strip())
+            
     speaker1 = train_conv(mecab,args.input1,encoding="shift-jis")
     speaker2 = train_conv(mecab,args.input2,encoding="utf-8")
 
-    conversation(speaker1,speaker2,mecab)
+    conversation(speaker1,speaker2,mecab,stop_words)
    
